@@ -1,1 +1,1 @@
-# southUniversity2
+# UniversityOfSouthWales
