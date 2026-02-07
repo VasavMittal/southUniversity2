@@ -360,6 +360,25 @@ body{
     letter-spacing: 0.3px;
 }
 
+@media (max-width: 768px) {
+
+    .usw-section .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .usw-image-wrapper {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .usw-img {
+        border-radius: 0px !important;   /* remove rounded corners for full-bleed look */
+    }
+
+}
+
+
 
 /* ===== COMPARISON ===== */
 .comparison-section{ background:#f8f9fa; }
