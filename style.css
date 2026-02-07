@@ -445,18 +445,6 @@ body{
     align-items: stretch; /* 🔥 important */
 }
 
-/* Desktop connection line */
-.process-grid::before {
-    content: "";
-    position: absolute;
-    top: 50px;
-    left: 5%;
-    width: 90%;
-    height: 2px;
-    background: rgba(169, 0, 17, 0.15);
-    z-index: 0;
-}
-
 /* Card */
 .process-card {
     background: #ffffff;
