@@ -884,6 +884,34 @@ body{
   .hero-points li{ font-size:16px; }
 }
 
+@media (max-width: 400px) {
+
+  .logo-divider {
+    width: 1px;                  /* slightly thicker */
+    height: 80px;                /* proportional */
+    background: rgba(255,255,255,0.6); /* more visible */
+  }
+
+  .hero-logo {
+    max-height: 80px;            /* prevent overflow squeeze */
+  }
+
+  .hero-logos {
+    gap: 0.6rem;                 /* tighter spacing */
+  }
+
+}
+
+@media (max-width: 320px) {
+    .logo-divider {
+    width: 2px;                  /* slightly thicker */
+    height: 80px;                /* proportional */
+    background: rgba(255,255,255,0.6); /* more visible */
+  }
+}
+
+
+
 /* small mobile refinements */
 @media(max-width: 576px){
   .hero-title{ font-size:22px; }
