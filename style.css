@@ -10,13 +10,6 @@
   font-synthesis: none;
 }
 
-/* ===== TESTIMONIAL ARROW COLOR FIX ===== */
-
-.testimonial-section .swiper-button-next,
-.testimonial-section .swiper-button-prev {
-    color: var(--brand-accent) !important;
-}
-
 
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -73,9 +66,9 @@ body{
 
 .hero-logos{ display:flex; gap:1rem; align-items:center; margin-bottom:1.2rem; }
 .hero-logo{ max-height:90px; width:auto; filter:brightness(1.02); }
-#roots-logo{ max-height:90px; width:150px; filter:brightness(1.02); }
+/* #roots-logo{ max-height:100px; width:auto; filter:brightness(1.02); } */
 
-.logo-divider{ width:1px; height:48px; background:rgba(255,255,255,0.3); }
+.logo-divider{ width:1px; height:90px; background:rgba(255,255,255,0.3); }
 
 .hero-title{
   color:#fff;
@@ -222,19 +215,157 @@ body{
 .specialisation-list li::before{ content:""; position:absolute; left:0; top:50%; transform:translateY(-50%); width:8px; height:8px; background:var(--brand-accent); border-radius:50%; }
 
 /* ===== JOURNEY ===== */
-.journey-section{ background:#fff; }
-.journey-card{ background:#fff; border-radius:14px; overflow:hidden; box-shadow:var(--card-shadow); display:flex; flex-direction:column; height:100%;}
-.journey-visual{ padding:0; }
-.journey-media{ position:relative; height:220px; overflow:hidden; }
-.journey-media-img{ width:100%; height:100%; object-fit:cover; display:block; }
-.journey-badge-card{
-  position:absolute; left:20px; top:18px; background:linear-gradient(135deg,var(--brand-accent),var(--accent-dark)); color:#fff;
-  padding:8px 12px; border-radius:12px; font-weight:700; box-shadow:0 10px 25px rgba(169,0,17,0.18);
+/* =========================
+   JOURNEY SECTION CLEAN FIX
+========================= */
+
+.journey-section {
+  background: #fff;
 }
-.journey-card-body{ padding:20px; display:flex; flex-direction:column; gap:12px; }
-.credits{ display:flex; align-items:baseline; gap:8px; }
-.credit-number{ font-size:36px; font-weight:800; color:var(--brand-accent); }
-.credit-text{ color:var(--muted); font-weight:600; }
+
+/* Card */
+.journey-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Image Wrapper */
+.journey-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* 🔥 removes cropping problem */
+  overflow: hidden;
+}
+
+/* Image */
+.journey-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Badge */
+.journey-badge-card {
+  position: absolute;
+  left: 20px;
+  bottom: 20px; /* 🔥 moved from top to bottom */
+  background: linear-gradient(135deg, var(--brand-accent), var(--accent-dark));
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(169,0,17,0.25);
+}
+
+/* Body */
+.journey-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Location */
+.journey-location {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Credits */
+.credits {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.credit-number {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--brand-accent);
+}
+
+.credit-text {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* List */
+.journey-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.journey-list li {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.journey-list li i {
+  color: var(--brand-accent);
+}
+
+/* =========================
+   RESPONSIVE FIX
+========================= */
+
+@media (max-width: 992px) {
+
+  .credit-number {
+    font-size: 32px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  /* Keep image wrapper normal */
+  .journey-media {
+    position: relative;
+  }
+
+  /* Add subtle dark fade for text visibility */
+  .journey-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.15),
+      transparent
+    );
+    z-index: 1;
+  }
+
+  /* Keep badge on image */
+  .journey-badge-card {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    top: auto;
+    font-size: 13px;
+    padding: 8px 14px;
+    z-index: 2;   /* make sure it stays above overlay */
+  }
+
+  .journey-card-body {
+    padding: 20px;
+  }
+
+}
+
 
 /* ===== PREMIUM FEES SECTION ===== */
 
@@ -592,10 +723,155 @@ body{
 }
 
 /* ===== TESTIMONIALS ===== */
-.testimonial-section{ background:#fff; }
-.testimonial-card{ background:#fff; padding:1.6rem; border-radius:12px; box-shadow: 0 18px 45px rgba(3,12,34,0.06); min-height:220px; display:flex; flex-direction:column; align-items:flex-start; gap:10px; }
-.testi-avatar{ width:64px; height:64px; border-radius:12px; object-fit:cover; box-shadow:0 12px 30px rgba(3,12,34,0.08); }
-.testimonial-name{ font-weight:700; color:var(--brand-accent); }
+/* =========================
+   PREMIUM TESTIMONIAL (PORTRAIT SAFE)
+========================= */
+
+.testimonial-section {
+  background: #fff;
+  padding: 100px 0;
+}
+
+/* Make swiper slides equal height */
+.testimonialSwiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.testimonialSwiper .swiper-slide {
+  display: flex;
+  height: auto;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.testimonial-card {
+  background: #f8f9fb;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  min-height: 520px;   /* 🔥 equal card height */
+  transition: all 0.4s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 90px rgba(15, 23, 42, 0.12);
+}
+
+/* =========================
+   IMAGE (NO CROPPING)
+========================= */
+
+.testi-avatar {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 18px;
+}
+
+.adjust-prashant {
+  object-position: center 50%;
+}
+
+
+/* =========================
+   NAME
+========================= */
+
+.testimonial-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brand-accent);
+  margin-top: 20px;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.testimonial-text {
+  margin-top: 12px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.testimonial-text p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #374151;
+  margin: 0;
+}
+
+/* Elegant quote decoration */
+/* .testimonial-text::before {
+  content: "“";
+  position: absolute;
+  top: -18px;
+  left: -6px;
+  font-size: 60px;
+  color: rgba(169, 0, 17, 0.07);
+  font-weight: 800;
+} */
+
+/* =========================
+   SWIPER ARROWS
+========================= */
+
+.testimonial-section .swiper-button-next,
+.testimonial-section .swiper-button-prev {
+  color: var(--brand-accent) !important;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px) {
+
+  .testimonial-card {
+    min-height: 480px;
+  }
+
+  .testi-avatar {
+    height: 280px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .testimonial-section {
+    padding: 70px 0;
+  }
+
+  .testimonial-card {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .testi-avatar {
+    height: 240px;
+  }
+
+  .testimonial-name {
+    font-size: 18px;
+  }
+
+  .testimonial-text p {
+    font-size: 15px;
+  }
+
+}
+
+
+
+
 
 /* ===== RESPONSIVE ===== */
 @media(max-width: 992px){
@@ -604,7 +880,6 @@ body{
   .partnersSwiper .swiper-slide { display:flex; justify-content:center; }
   .process-flow-wrapper{ flex-wrap:wrap; gap:14px; }
   .process-arrow::after{ content:"↓"; transform:none; font-size:22px; color:var(--brand-accent); }
-  .journey-media{ height:200px; }
   .usw-img{ height:240px; }
   .hero-points li{ font-size:16px; }
 }
