@@ -1131,6 +1131,8 @@
         }
     });
 
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzTD2-FPBPg-86m_o9OW0nLEaxb5zVgKEMMm0LB6Vq3NhmNncQBuEE0zoAd4jNKIIwPjg/exec";
+
     // Form submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -1155,36 +1157,68 @@
         submitBtn.disabled = true;
         submitBtnText.style.display = 'none';
         submitBtnLoader.style.display = 'inline-block';
-
+        let url = window.location.href;
         // Collect form data
         const formData = {
-            fullName: fullNameInput.value.trim(),
-            whatsappNumber: whatsappInput.value.trim(),
-            emailId: emailInput.value.trim(),
-            convenientTime: timeInput.value.trim(),
-            willingToRelocate: relocateCheckbox.checked,
-            feesReviewed: feesCheckbox.checked,
-            timestamp: new Date().toISOString()
+            "fullName": fullNameInput.value.trim(),
+            "whatsappNumber": whatsappInput.value.trim(),
+            "emailId": emailInput.value.trim(),
+            "convenientTime": timeInput.value.trim(),
+            "willingToRelocate": relocateCheckbox.checked,
+            "feesReviewed": feesCheckbox.checked,
+            "Url": url,
+            "Lp name": "South_University",
         };
 
         // Simulate form submission (replace with your actual API call)
         try {
-            // TODO: Replace this with your actual form submission logic
-            console.log('Form Data:', formData);
+           // Convert formData object to URL-encoded string
+              const formBody = Object.keys(formData).map(key =>
+                  encodeURIComponent(key) + '=' + encodeURIComponent(formData[key])
+              ).join('&');
 
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 2000));
+              // Use fetch API instead of jQuery ajax
+              fetch(scriptURL, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: formBody
+              })
+              .then(response => response.json())
+              .then(data => {
+                  console.log("Form submitted successfully to Google Sheet", data);
 
-            // Success
-            alert('Thank you for your application! We will contact you soon.');
-            closeModal();
+                  // Reset button state
+                  submitBtn.disabled = false;
+                  submitBtnText.style.display = 'inline';
+                  submitBtnLoader.style.display = 'none';
+
+                  // Reset form and close modal
+                  form.reset();
+                  closeModal();
+
+                  // Redirect to thank you page
+                  window.location.href = "thankyou/index.html";
+              })
+              .catch(error => {
+                  console.error("Google Sheets Error:", error);
+
+                  // Reset button state
+                  submitBtn.disabled = false;
+                  submitBtnText.style.display = 'inline';
+                  submitBtnLoader.style.display = 'none';
+
+                  // Show error message to user
+                  alert("Sorry, there was an error submitting your form. Please try again or contact us directly.");
+              });
         } catch (error) {
-            alert('Something went wrong. Please try again.');
-        } finally {
             // Reset button state
             submitBtn.disabled = false;
             submitBtnText.style.display = 'inline';
             submitBtnLoader.style.display = 'none';
+
+            alert('Something went wrong. Please try again.');
         }
     });
 </script>
