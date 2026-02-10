@@ -70,7 +70,7 @@ body{
 
 .logo-divider{ width:1px; height:90px; background:rgba(255,255,255,0.3); }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
 
   .hero-logo {
     max-height: 70px;   /* reduce from 90px */
