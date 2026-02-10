@@ -40,7 +40,7 @@ body{
   position:absolute; inset:0;
   background-image: url('./img/heroSection1.jpg');
   background-size:cover;
-  background-position:center 40%;
+  background-position:center;
   /* filter: saturate(95%) contrast(95%); */
   z-index:0;
 }
@@ -78,6 +78,10 @@ body{
 
   .logo-divider {
     height: 70px;       /* match logo height */
+  }
+
+  .hero-bg-div{
+    background-position:center 40%;
   }
 
 }
