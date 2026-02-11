@@ -1118,7 +1118,7 @@ body{
 }
 
 .modal-header {
-    background: linear-gradient(135deg, var(--brand-accent) 0%, #8f000e 100%);
+    background: linear-gradient(135deg, var(--brand-accent) 0%, var(--accent-dark) 100%);
     padding: 2rem 3.5rem;
     border-radius: 16px 16px 0 0;
     text-align: center;
@@ -1283,7 +1283,7 @@ body{
 
 .btn-submit {
     width: 100%;
-    background: linear-gradient(135deg, var(--brand-accent) 0%, #8f000e 100%);
+    background: linear-gradient(135deg, var(--brand-accent) 0%, var(--accent-dark) 100%);
     color: #ffffff;
     font-size: 1.1rem;
     font-weight: 600;
@@ -1297,7 +1297,7 @@ body{
 
 .btn-submit:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(169, 0, 17, 0.3);
+    box-shadow: 0 8px 20px rgba(1, 45, 116, 0.3);
 }
 
 .btn-submit:disabled {
